@@ -15,7 +15,7 @@ bot.startPolling()
 
 // Setup the reply middleware
 bot.use((ctx, next) => {
-  ctx.replyWithMarkdown(`\`\`\` ${JSON.stringify((<any>ctx).update, undefined, 2)}\`\`\``)
+  ctx.replyWithMarkdown(`Update\n\`\`\`\uFEFF${JSON.stringify((<any>ctx).update, undefined, 2)}\`\`\``)
   // Continue bot execution
   next()
 })
