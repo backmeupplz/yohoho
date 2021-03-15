@@ -1,21 +1,19 @@
 // Get environment variables
 import * as dotenv from 'dotenv'
 dotenv.config({ path: `${__dirname}/../.env` })
-
 // Dependencies
-import { Telegraf, ContextMessageUpdate } from 'telegraf'
-const telegraf = require('telegraf')
-
+import { Telegraf } from 'telegraf'
 // Setup the bot
-const bot: Telegraf<ContextMessageUpdate> = new telegraf(process.env.TOKEN, {
-  username: process.env.USERNAME,
-  channelMode: true,
-})
-bot.startPolling()
-
+const bot = new Telegraf(process.env.TOKEN)
 // Setup the reply middleware
-bot.use((ctx, next) => {
-  ctx.replyWithMarkdown(`\`\`\` ${JSON.stringify((<any>ctx).update, undefined, 2)}\`\`\``)
-  // Continue bot execution
-  next()
+bot.use((ctx) =>
+  ctx.replyWithHTML(
+    `<code>${JSON.stringify((<any>ctx).update, undefined, 2)}</code>`
+  )
+)
+// Catch errors
+bot.catch(console.error)
+// Start bot
+bot.launch().then(() => {
+  console.log('Bot started')
 })
