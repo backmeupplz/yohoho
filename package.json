@@ -9,7 +9,7 @@
   "dependencies": {
     "@types/dotenv": "^4.0.3",
     "dotenv": "^6.0.0",
-    "telegraf": "^3.22.1"
+    "grammy": "^1.35.1"
   },
   "scripts": {
     "distribute": "yarn build-ts && node dist/app.js",
