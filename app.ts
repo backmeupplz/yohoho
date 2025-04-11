@@ -1,9 +1,11 @@
-import * as dotenv from 'dotenv'
-dotenv.config({ path: `${__dirname}/../.env` })
-
 import { Bot } from 'grammy'
 
-const bot = new Bot(process.env.TOKEN)
+const token = process.env.TOKEN
+if (!token) {
+  throw new Error('TOKEN is not defined in .env file')
+}
+
+const bot = new Bot(token)
 bot.start()
 
 bot.use((ctx, next) => {

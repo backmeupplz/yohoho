@@ -1,11 +1,8 @@
 [phases.install]
-cmds = ["yarn install"]
-
-[phases.build]
-cmds = ["yarn build-ts"]
+cmds = ["bun install"]
 
 [start]
-cmd = "node dist/app.js"
+cmd = "bun start"
 
 [variables]
 NODE_ENV = "production"
