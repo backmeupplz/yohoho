@@ -1,4 +1,5 @@
 import { Bot } from 'grammy'
+import { startWithHandover } from './handover'
 
 const token = process.env.TOKEN
 if (!token) {
@@ -6,7 +7,7 @@ if (!token) {
 }
 
 const bot = new Bot(token)
-bot.start()
+startWithHandover(bot)
 
 bot.use((ctx, next) => {
   ctx.reply(`\`\`\` ${JSON.stringify(ctx.update, undefined, 2)}\`\`\``, {
